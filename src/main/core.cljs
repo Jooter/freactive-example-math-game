@@ -2,9 +2,9 @@
   (:refer-clojure :exclude [atom])
   (:require [freactive.core :refer [atom cursor]]
             [freactive.dom :as dom]
-            [chord.client :refer [ws-ch]]
-            [cljs.core.async :refer [<! >! put! close!]])
-  (:require-macros [cljs.core.async.macros :refer [go]]
+            #_[chord.client :refer [ws-ch]]
+            #_[cljs.core.async :refer [<! >! put! close!]])
+  (:require-macros #_[cljs.core.async.macros :refer [go]]
                    [freactive.macros :refer [rx]]))
     
 (defn log1 [& args]
