@@ -5,7 +5,7 @@
 (def source-dir "src")
 
 (defn compiler-config [args]
-  (let [base-dir ""]
+  (let [base-dir "."]
   (prn :args args)
   {:main 'init.index
    :verbose true
