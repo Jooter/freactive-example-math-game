@@ -5,17 +5,18 @@
 (def source-dir "src")
 
 (defn compiler-config [args]
+  (let [base-dir ""]
   (prn :args args)
-  {:main 'main.core
+  {:main 'init.index
    :verbose true
    :watch-fn (fn [] (println "Updated build" (java.time.LocalDateTime/now)))
    :asset-path "out"
-   :output-dir "public/out"
-   :output-to  "public/main.js"
+   :output-dir (str base-dir "/out")
+   :output-to  (str base-dir "/main.js")
    :source-map true
    :optimizations :none ; :whitespace
    :pretty-print true
-  })
+  }))
 
 ;;; Task dispatching.
 
