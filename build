@@ -12,7 +12,7 @@
    :watch-fn (fn [] (println "Updated build" (java.time.LocalDateTime/now)))
    :asset-path "out"
    :output-dir (str base-dir "/out")
-   :output-to  (str base-dir "/main.js")
+   :output-to  (str base-dir "/index.js")
    :source-map true
    :optimizations :none ; :whitespace
    :pretty-print true
