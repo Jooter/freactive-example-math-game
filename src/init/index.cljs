@@ -1,6 +1,6 @@
 (ns init.index
   (:refer-clojure :exclude [atom])
-  (:require [freactive.core :refer [atom cursor]]
+  (:require [freactive.core :refer [atom]]
             [freactive.dom :as dom])
   (:require-macros [freactive.macros :refer [rx]]))
 
@@ -13,11 +13,18 @@
     [:div "Time Remaining: " (rx (str @seconds-left))]
     ))
 
+(defn init-values [a b]
+  (reset! a (rand-int 10))
+  (reset! b (rand-int 10)))
+
 (defn view []
   (let [cnt (atom 0)
-        seconds-left (atom 20)
-        a (atom (rand-int 10)) 
-        b (atom (rand-int 10))]
+        seconds-left (atom 30)
+        a (atom 0) 
+        b (atom 0)]
+
+    (init-values a b)
+
     [:div 
      [:h1 "Math Super Hero"]
      ((countdown-component seconds-left))
@@ -39,13 +46,12 @@
                        (aset t "style" "border:solid #ff0000")
                        (do
                          (aset t "style" "border:solid #0000ff")
-                         (reset! a (rand-int 10))
-                         (reset! b (rand-int 10))
+                         (init-values a b)
                          (aset t "value" "")
                          (swap! cnt inc) 
                          )))))
-               }]
-      ]
+               }]]
+
      [:p "Total correct answers: " (rx (str @cnt))
       ]]))
 
