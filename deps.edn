@@ -1,4 +1,5 @@
 
-{:deps {org.clojure/clojurescript {:mvn/version "LATEST"}
-        freactive {:mvn/version "0.1.0"}
-        }}
+{:deps 
+ {org.clojure/clojurescript {:mvn/version "LATEST"} ;; tested with 1.10.238
+  freactive {:mvn/version "LATEST"} ;; tested with 0.1.0 
+  }}
