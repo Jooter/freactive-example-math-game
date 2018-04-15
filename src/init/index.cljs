@@ -14,7 +14,7 @@
 
 (defn countdown-component [secs]
   (let [inv (js/setInterval
-             #(reset! secs (dec @secs))
+             #(swap! secs dec)
              1000)]
 
     [:div "Time Remaining: "
