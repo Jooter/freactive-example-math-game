@@ -7,15 +7,33 @@
 (defn log1 [& args]
   (js/console.log (pr-str args)))
 
-(defn countdown-component [seconds-left]
-  (js/setInterval #(swap! seconds-left (fn [a] (if (> a 0) (dec a) 0))) 1000)
-  (fn []  
-    [:div "Time Remaining: " (rx (str @seconds-left))]
-    ))
-
 (defn init-values [a b]
-  (reset! a (rand-int 10))
-  (reset! b (rand-int 10)))
+  (let [r (range 1 5)]
+    (reset! a (rand-nth r))
+    (reset! b (rand-nth r))))
+
+(defn countdown-component [secs]
+  (let [inv (js/setInterval
+             #(reset! secs (dec @secs))
+             1000)]
+
+    [:div "Time Remaining: "
+     (rx (do (when (<= @secs 0)
+               (js/clearInterval inv))
+
+             (str @secs)))]))
+
+(defn fingers [a b]
+  (let [f (fn [j] (cond (= j 0) []
+                        (<= j 5) [j]
+                        :else [5 (- j 5)]))
+
+        arr [(f @a) (f @b)]]
+
+    [:div
+     (for [i (flatten arr)]
+       [:img {:alt "" :src (str "f" i ".gif")}])
+     ]))
 
 (defn view []
   (let [cnt (atom 0)
@@ -27,9 +45,9 @@
 
     [:div 
      [:h1 "Math Super Hero"]
-     ((countdown-component seconds-left))
+     (rx (fingers a b))
      [:h1
-      (rx (str @a " + " @b " = "))
+      ; (rx (str @a " + " @b " = "))
       [:input {:id "in1"
                :type "text" 
                :style {:border "solid #0000ff"} 
@@ -52,6 +70,7 @@
                          )))))
                }]]
 
+     (countdown-component seconds-left)
      [:p "Total correct answers: " (rx (str @cnt))
       ]]))
 
