@@ -1,5 +1,6 @@
 #_[
- exec clojure "$0" "$@"
+ clojure -Sdescribe 
+ exec clojure -Sverbose "$0" "$@"
 ]
 
 (def source-dir "src")
