@@ -9,3 +9,5 @@ This is a simple example for clojurescript with freactive. No server process req
 
 ## Play
 $ firefox ./index.html
+or
+Go to https://jooter.github.io
