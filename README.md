@@ -8,6 +8,5 @@ This is a simple example for clojurescript with freactive. No server process req
 * (for build, jdk8 and clojure 1.9 need be installed)
 
 ## Play
-$ firefox ./index.html
-or
-Go to https://jooter.github.io
+* $ firefox ./index.html
+* or go to https://jooter.github.io
